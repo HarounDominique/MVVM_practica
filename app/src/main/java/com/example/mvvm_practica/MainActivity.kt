@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
+import com.example.mvvm_practica.ui.login.ui.LoginViewModel
 import com.example.mvvm_practica.ui.login.ui.loginScreen
 import com.example.mvvm_practica.ui.theme.MVVM_practicaTheme
 
@@ -19,7 +20,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    loginScreen()
+                    loginScreen(LoginViewModel())
                 }
             }
         }
