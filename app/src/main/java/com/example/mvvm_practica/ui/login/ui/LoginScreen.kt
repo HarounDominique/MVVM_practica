@@ -1,5 +1,6 @@
 package com.example.mvvm_practica.ui.login.ui
 
+import android.util.Patterns
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
@@ -28,10 +29,11 @@ fun loginScreen(viewModelo: LoginViewModel) {
     }
 }
 
+
 @Composable
 fun login(modifier: Modifier, viewModelo: LoginViewModel) {
 
-    val email: String by viewModelo.email.observeAsState(initial = "")
+
     val password: String by viewModelo.password.observeAsState(initial = "")
     val logiEnabled: Boolean by viewModelo.loginEnabled.observeAsState(initial = false)
 
@@ -46,9 +48,9 @@ fun login(modifier: Modifier, viewModelo: LoginViewModel) {
                 .align(Alignment.CenterHorizontally)
         )
         Spacer(modifier = Modifier.padding(16.dp))
-        emailField(email) { viewModelo.onLoginChanged(it, password) }
+        emailField(viewModelo.email) { viewModelo.onLoginChanged(it, password) }
         Spacer(modifier = Modifier.padding(16.dp))
-        passwordField(password) { viewModelo.onLoginChanged(email, it) }
+        passwordField(password) { viewModelo.onLoginChanged(viewModelo.email, it) }
         Spacer(modifier = Modifier.padding(16.dp))
         forgotPassword(Modifier.align(Alignment.End))
         Spacer(modifier = Modifier.padding(16.dp))
@@ -115,7 +117,6 @@ fun emailField(email: String, onTextFieldChanged: (String) -> Unit) {
         )
     )
 }
-
 
 @Composable
 fun headerImage(align: Modifier) {

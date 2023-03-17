@@ -1,13 +1,19 @@
 package com.example.mvvm_practica.ui.login.ui
 
 import android.util.Patterns
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class LoginViewModel : ViewModel(){
-    private val _email = MutableLiveData<String>()
-    val email : LiveData<String> = _email
+class LoginViewModel : ViewModel() {
+    val __email = ""
+
+    private var _email by mutableStateOf("")
+    val email get() = _email
 
     private val _password = MutableLiveData<String>()
     val password : LiveData<String> = _password
@@ -15,8 +21,9 @@ class LoginViewModel : ViewModel(){
     private val _loginEnabled = MutableLiveData<Boolean>()
     val loginEnabled : LiveData<Boolean> = _loginEnabled
 
+
     fun onLoginChanged(email: String, password: String){
-        _email.value = email
+        _email = email
         _password.value = password
         _loginEnabled.value = isValidEmail(email) && isValidPassword(password)
     }
@@ -27,5 +34,4 @@ class LoginViewModel : ViewModel(){
     fun onLoginSelected() {
 
     }
-
 }
