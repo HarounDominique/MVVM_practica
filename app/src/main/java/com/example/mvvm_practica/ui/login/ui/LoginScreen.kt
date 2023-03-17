@@ -48,7 +48,7 @@ fun login(modifier: Modifier, viewModelo: LoginViewModel) {
         Spacer(modifier = Modifier.padding(16.dp))
         emailField(email) { viewModelo.onLoginChanged(it, password) }
         Spacer(modifier = Modifier.padding(16.dp))
-        passwordField(password) { viewModelo.onLoginChanged(password, it) }
+        passwordField(password) { viewModelo.onLoginChanged(email, it) }
         Spacer(modifier = Modifier.padding(16.dp))
         forgotPassword(Modifier.align(Alignment.End))
         Spacer(modifier = Modifier.padding(16.dp))
@@ -85,12 +85,12 @@ fun forgotPassword(modifier: Modifier) {
 }
 
 @Composable
-fun passwordField(password: String, onTextFieldChange: (String) -> Unit) {
+fun passwordField(password: String, onTextFieldChanged: (String) -> Unit) {
     TextField(
-        value = password, onValueChange = { onTextFieldChange(it) },
+        value = password, onValueChange = { onTextFieldChanged(it) },
         placeholder = { Text(text = "Contraseña") },
         modifier = Modifier.fillMaxWidth(),
-        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
         singleLine = true,
         maxLines = 1,
         colors = TextFieldDefaults.textFieldColors(
@@ -101,9 +101,9 @@ fun passwordField(password: String, onTextFieldChange: (String) -> Unit) {
 }
 
 @Composable
-fun emailField(email: String, onTextFieldChange: (String) -> Unit) {
+fun emailField(email: String, onTextFieldChanged: (String) -> Unit) {
     TextField(
-        value = email, onValueChange = { onTextFieldChange(it) },
+        value = email, onValueChange = { onTextFieldChanged(it) },
         modifier = Modifier.fillMaxWidth(),
         placeholder = { Text(text = "Email") },
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),

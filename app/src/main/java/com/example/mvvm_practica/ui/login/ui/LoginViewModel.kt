@@ -10,7 +10,7 @@ class LoginViewModel : ViewModel(){
     val email : LiveData<String> = _email
 
     private val _password = MutableLiveData<String>()
-    val password : LiveData<String> = _email
+    val password : LiveData<String> = _password
 
     private val _loginEnabled = MutableLiveData<Boolean>()
     val loginEnabled : LiveData<Boolean> = _loginEnabled
